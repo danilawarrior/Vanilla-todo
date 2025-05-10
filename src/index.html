@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+
     <!-- Добавьте в <head> вашего HTML -->
     <link
       href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Heebo:wght@300&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Yantramanav:wght@700&display=swap"
@@ -12,16 +13,57 @@
     <title>Vanilla</title>
   </head>
   <body>
-    <header class="header">
+    <header class="container header">
       <div class="header__logo">
         <img src="" alt="Logo" />
       </div>
-      <nav class="header__nav">
-        <ul class="header__ul">
-          <li class="header__li"><a class="header__a" href="">Задачи</a></li>
-          <li class="header__li"><a class="header__a" href="">О приложении</a></li>
-        </ul>
-      </nav>
+      <div class="header__nav">
+        <nav>
+          <ul class="header__list">
+            <li class="header__list-item"><a class="" href="">Задачи</a></li>
+            <li class="header__list-item"><a class="" href="">О приложении</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="header__switch-mode">
+        <img src="" alt="Sun" />
+      </div>
     </header>
+    <div class="line-gray"></div>
+    <main class="main">
+      <section class="tools container">
+        <div class="tools__controls">
+          <button class="main-button" id="openModalBtn">Добавить задачу</button>
+          <div class="tools__drop-button">
+            <button class="main-button">Фильтр списка</button>
+            <div class="tools__drop-down-content">
+              <a>Все</a>
+              <a>Завершенные</a>
+              <a>Незавершенные</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="tasks container">
+        <div class="tasks__modal" id="tasksModal">
+          <div class="tasks__add-modal">
+            <p>Добавить задачу</p>
+            <div class="line-gray"></div>
+            <textarea
+              placeholder="Помыть негра"
+              id="textareaTasksModal"
+              type="text"
+              class="tasks__input"
+              required
+            ></textarea>
+            <div class="buttons-add-tasks">
+              <button id="saveTaskModalBtn">Добавить</button>
+              <button id="closeTasksModalBtn">Отмена</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="app.js"></script>
   </body>
 </html>

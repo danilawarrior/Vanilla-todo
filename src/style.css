@@ -124,6 +124,7 @@ body {
      Унифицированный интерлиньяж
     */
   line-height: 1.5;
+  overflow: hidden;
 }
 
 /**
@@ -193,41 +194,137 @@ svg * {
 
 :root {
   --font-main: 'Comic Relief', cursive;
+  --pleasant-color: #faf4e6;
+  --lightGray-color: #f0f0f0;
   --caramel-color: rgb(225, 199, 143);
   --arabica-color: rgb(176, 146, 106);
 }
 body {
   font-family: var(--font-main);
+  background-color: var(--pleasant-color);
+
   width: 100%;
   height: 100%;
 }
-/* TODO:ВОЗМОЖНО УБРАТЬ приколы с position и сделать space-between с пустым 4 элементом для симметрии  */
-.header {
-  position: relative;
-  display: flex;
-  flex-direction: flex-start;
-  align-items: center;
-  background: var(--caramel-color);
-  min-height: 10%;
+
+/* убрали скроллбар */
+::-webkit-scrollbar {
+  display: none;
 }
+
+.container {
+  width: 100%;
+  max-width: 1456px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  min-height: 10%;
+  align-items: center;
+}
+
 .header__nav {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-left: auto;
+  margin-right: auto;
 }
 .header__logo {
-  margin-left: 5%;
+  margin-left: 1%;
 }
 
-.header__ul {
+.header__list {
   display: flex;
   min-width: 200px;
+  gap: 150px;
 }
 
-.header__li {
+/* .header__list-item {
   padding-inline: 20%;
+} */
+
+.header__list-item a {
+  white-space: nowrap;
+}
+.header__switch-mode {
+  margin-right: 1%;
 }
 
-.header__li a {
-  white-space: nowrap;
+.line-gray {
+  width: 100%;
+  height: 2px;
+  background-color: rgb(153, 149, 149);
+}
+.tools__controls {
+  display: flex;
+  justify-content: center;
+  min-width: 200px;
+  margin: 15px;
+  gap: 100px;
+}
+.main-button {
+  border-radius: 45%;
+  padding: 10px;
+  max-height: 50px;
+}
+.main-button:hover {
+  background-color: var(--caramel-color);
+}
+.tools__drop-button {
+  position: relative;
+  display: inline-block;
+}
+
+.tools__drop-down-content {
+  display: none;
+  position: absolute;
+  background-color: var(--lightGray-color);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 35%;
+}
+.tools__drop-down-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.tools__drop-down-content a:hover {
+  color: var(--caramel-color);
+  border-radius: 35%;
+}
+
+.tools__drop-button:hover .tools__drop-down-content {
+  display: block;
+}
+
+.tasks__modal {
+  display: none; /* при отображение менять на flex */
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.tasks__add-modal p {
+  text-align: center;
+}
+
+.tasks__input {
+  min-width: 500px;
+  min-height: 100px;
+}
+.buttons-add-tasks {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  margin: 3px;
 }
