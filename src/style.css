@@ -328,3 +328,35 @@ body {
   gap: 10px;
   margin: 3px;
 }
+
+.tasks__task-box {
+  border: 1px solid black;
+  border-radius: 3%;
+  background-color: var(--lightGray-color);
+  max-width: 300px;
+  max-height: 1000px;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 20% auto;
+}
+.tasks__checkbox {
+  width: 20px;
+  height: 20px;
+  justify-self: left;
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+.tasks__task-text {
+  margin: 3px;
+  min-height: 100px;
+  grid-column: 1/3;
+  grid-row: 2/3;
+}
+.more-button {
+  background: none;
+  border: none;
+  justify-self: right;
+}
+.more-button:hover {
+  color: var(--caramel-color);
+}
