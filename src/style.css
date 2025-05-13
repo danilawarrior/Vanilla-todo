@@ -124,7 +124,7 @@ body {
      Унифицированный интерлиньяж
     */
   line-height: 1.5;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /**
@@ -205,11 +205,6 @@ body {
 
   width: 100%;
   height: 100%;
-}
-
-/* убрали скроллбар */
-::-webkit-scrollbar {
-  display: none;
 }
 
 .container {
@@ -329,16 +324,33 @@ body {
   margin: 3px;
 }
 
-.tasks__task-box {
+.tasks__placement {
+  /* display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 25px;
+  gap: 25px;
+  padding-left: 25px; */
+
+  display: grid;
+  grid-template-columns: repeat(4, 300px); /* Точно 4 колонки по 300px */
+  gap: 25px; /* Отступы между карточками */
+  justify-content: center; /* Центрируем сетку внутри контейнера */
+  margin: 35px auto; /* Центрируем контейнер */
+  padding: 0; /* Убираем лишние отступы */
+}
+.tasks__card {
   border: 1px solid black;
   border-radius: 3%;
   background-color: var(--lightGray-color);
+  min-width: 300px;
   max-width: 300px;
   max-height: 1000px;
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: 20% auto;
 }
+
 .tasks__checkbox {
   width: 20px;
   height: 20px;
@@ -346,7 +358,7 @@ body {
   grid-column: 1/2;
   grid-row: 1/2;
 }
-.tasks__task-text {
+.tasks__text {
   margin: 3px;
   min-height: 100px;
   grid-column: 1/3;

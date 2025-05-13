@@ -1,3 +1,8 @@
+// срабатывает при html документ загружен но не все ресурсы загрузились(например img)
+document.addEventListener('DOMContentLoaded', function () {
+  renderTasks();
+});
+
 const tasksModal = document.getElementById('tasksModal');
 const openModalBtn = document.getElementById('openModalBtn');
 const closeTasksModalBtn = document.getElementById('closeTasksModalBtn');
@@ -18,6 +23,7 @@ window.onclick = function (event) {
 const saveTaskModalBtn = document.getElementById('saveTaskModalBtn');
 const textareaTasksModal = document.getElementById('textareaTasksModal');
 const id = 0;
+
 saveTaskModalBtn.onclick = function () {
   if (textareaTasksModal.value.trim().length === 0) {
     alert('Вы не написали задачу(');
@@ -32,5 +38,23 @@ saveTaskModalBtn.onclick = function () {
     savedTasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(savedTasks));
     textareaTasksModal.value = '';
+    renderTasks();
   }
 };
+
+function renderTasks() {
+  const tasksPlacement = document.getElementById('tasksPlacement');
+  tasksPlacement.innerHTML = '';
+  const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  savedTasks.forEach(task => {
+    const taskCard = document.createElement('div');
+    taskCard.id = 'taskCard';
+    taskCard.className = 'tasks__card';
+    taskCard.innerHTML = `
+          <input class="tasks__checkbox" type="checkbox" />
+          <button class="more-button">⋮</button>
+          <p class="tasks__text">${task.text}</p>
+          `;
+    tasksPlacement.appendChild(taskCard);
+  });
+}
