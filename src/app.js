@@ -22,7 +22,6 @@ window.onclick = function (event) {
 
 const saveTaskModalBtn = document.getElementById('saveTaskModalBtn');
 const textareaTasksModal = document.getElementById('textareaTasksModal');
-const id = 0;
 
 saveTaskModalBtn.onclick = function () {
   if (textareaTasksModal.value.trim().length === 0) {
@@ -52,9 +51,23 @@ function renderTasks() {
     taskCard.className = 'tasks__card';
     taskCard.innerHTML = `
           <input class="tasks__checkbox" type="checkbox" />
-          <button class="more-button">⋮</button>
+          <button id="moreTaskBtn" class="more-button">⋮</button>
           <p class="tasks__text">${task.text}</p>
+
+          <div class="tasks__dropdown-menu">
+            <button class="edit-btn">Редактировать</button>
+            <button class="delete-btn">Удалить</button>
+          </div>
           `;
     tasksPlacement.appendChild(taskCard);
+  });
+
+  //TODO: сейчас кнопка : работает только к первой задаче
+  const moreTaskBtn = document.querySelector('.more-button');
+  const dropDownMenuTask = document.querySelector('.tasks__dropdown-menu');
+
+  moreTaskBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    dropDownMenuTask.style.display = dropDownMenuTask.style.display === 'block' ? 'none' : 'block';
   });
 }
