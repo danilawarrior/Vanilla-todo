@@ -48,26 +48,29 @@ function renderTasks() {
   savedTasks.forEach(task => {
     const taskCard = document.createElement('div');
     taskCard.id = 'taskCard';
-    taskCard.className = 'tasks__card';
+    taskCard.className = 'task__card';
     taskCard.innerHTML = `
-          <input class="tasks__checkbox" type="checkbox" />
+          <input  class="tasks__checkbox" 
+          type="checkbox" data-task-id="${task.id}"  ${task.completed ? 'checked' : ''} />
           <button id="moreTaskBtn" class="more-button">⋮</button>
-          <p class="tasks__text">${task.text}</p>
-
-          <div class="tasks__dropdown-menu">
-            <button class="edit-btn">Редактировать</button>
-            <button class="delete-btn">Удалить</button>
+          <div class="task__dropdown-menu">
+            <button id="taskEditBtn" class="edit-btn">Редактировать</button>
+            <button id="taskDeleteBtn" class="delete-btn">Удалить</button>
           </div>
+          <p class="tasks__text">${task.text}</p>
           `;
     tasksPlacement.appendChild(taskCard);
-  });
 
-  //TODO: сейчас кнопка : работает только к первой задаче
-  const moreTaskBtn = document.querySelector('.more-button');
-  const dropDownMenuTask = document.querySelector('.tasks__dropdown-menu');
-
-  moreTaskBtn.addEventListener('click', e => {
-    e.stopPropagation();
-    dropDownMenuTask.style.display = dropDownMenuTask.style.display === 'block' ? 'none' : 'block';
+    const checkbox = taskCard.querySelector('.tasks__checkbox');
+    checkbox.addEventListener('change', event => {
+      const taskId = parseInt(event.target.dataset.taskId);
+      const isChecked = event.target.checked;
+      changeCheckbox(taskId, isChecked); // Передаём ID и статус
+    });
   });
+}
+function changeCheckbox(taskId, isChecked) {
+  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  const updatedTasks = tasks.map(task => (task.id === taskId ? { ...task, completed: isChecked } : task));
+  localStorage.setItem('tasks', JSON.stringify(updatedTasks));
 }
