@@ -45,10 +45,13 @@
         </div>
       </section>
       <section class="tasks container">
-        <div class="tasks__modal" id="tasksModal">
-          <div class="tasks__add-modal">
+        <div class="tasks__placement" id="tasksPlacement"></div>
+      </section>
+      <!-- TODO:меняю структура модальных окон -->
+      <section class="modal container">
+        <div class="modal-background modal__add-task invisible" id="modalAddTask">
+          <div class="modal-content">
             <p>Добавить задачу</p>
-            <div class="line-gray"></div>
             <textarea
               placeholder="Помыть кота"
               id="textareaTasksModal"
@@ -62,7 +65,22 @@
             </div>
           </div>
         </div>
-        <div class="tasks__placement" id="tasksPlacement"></div>
+        <div class="modal-background modal__edit-task invisible" id="modalEditTask">
+          <div class="modal-content">
+            <p>Изменить задачу</p>
+            <textarea
+              placeholder="Помыть кота"
+              id="textareaTasksModal"
+              type="text"
+              class="tasks__textarea"
+              required
+            ></textarea>
+            <div class="modal__buttons">
+              <button id="saveTaskModalBtn">Изменить</button>
+              <button id="closeTasksModalBtn">Отмена</button>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
     <script src="app.js"></script>

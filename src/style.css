@@ -297,8 +297,7 @@ body {
   display: block;
 }
 
-.tasks__modal {
-  display: none; /* при отображение менять на flex */
+.modal-background {
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -310,8 +309,11 @@ body {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
 }
+.invisible {
+  display: none; /* при отображение менять на flex */
+}
 
-.tasks__add-modal p {
+.modal p {
   text-align: center;
 }
 
@@ -319,7 +321,7 @@ body {
   min-width: 500px;
   min-height: 100px;
 }
-.buttons-add-tasks {
+.modal__buttons {
   display: flex;
   justify-content: end;
   gap: 10px;
@@ -327,13 +329,6 @@ body {
 }
 
 .tasks__placement {
-  /* display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  margin-top: 25px;
-  gap: 25px;
-  padding-left: 25px; */
-
   display: grid;
   grid-template-columns: repeat(4, 300px); /* Точно 4 колонки по 300px */
   gap: 25px; /* Отступы между карточками */
@@ -385,7 +380,7 @@ body {
   position: absolute;
   top: 30px;
   right: 0px;
-  left: 280px;
+  left: 265px;
   background-color: none;
   min-width: 130px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);

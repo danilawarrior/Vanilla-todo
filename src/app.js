@@ -3,20 +3,20 @@ document.addEventListener('DOMContentLoaded', function () {
   renderTasks();
 });
 
-const tasksModal = document.getElementById('tasksModal');
+const modalAddTask = document.getElementById('modalAddTask');
 const openModalBtn = document.getElementById('openModalBtn');
 const closeTasksModalBtn = document.getElementById('closeTasksModalBtn');
 openModalBtn.onclick = function () {
-  tasksModal.style.display = 'flex';
+  modalAddTask.style.display = 'flex';
 };
 
 closeTasksModalBtn.onclick = function () {
-  tasksModal.style.display = 'none';
+  modalAddTask.style.display = 'none';
 };
 
 window.onclick = function (event) {
-  if (event.target === tasksModal) {
-    tasksModal.style.display = 'none';
+  if (event.target === modalAddTask) {
+    modalAddTask.style.display = 'none';
   }
 };
 
@@ -54,7 +54,7 @@ function renderTasks() {
           type="checkbox" data-task-id="${task.id}"  ${task.completed ? 'checked' : ''} />
           <button id="moreTaskBtn" class="more-button">⋮</button>
           <div class="task__dropdown-menu">
-            <button id="taskEditBtn" class="edit-btn">Редактировать</button>
+            <button id="taskEditBtn" class="edit-btn" data-task-id="${task.id}">Редактировать</button>
             <button id="taskDeleteBtn" class="delete-btn">Удалить</button>
           </div>
           <p class="tasks__text">${task.text}</p>
@@ -67,10 +67,26 @@ function renderTasks() {
       const isChecked = event.target.checked;
       changeCheckbox(taskId, isChecked); // Передаём ID и статус
     });
+
+    const editBtn = taskCard.querySelector('.edit-btn');
+    editBtn.addEventListener('click', event => {
+      const taskId = parseInt(event.target.dataset.taskId);
+      editTaskText(taskId);
+    });
   });
 }
 function changeCheckbox(taskId, isChecked) {
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   const updatedTasks = tasks.map(task => (task.id === taskId ? { ...task, completed: isChecked } : task));
   localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+}
+
+const modalEditTask = document.getElementById('modalEditTask');
+function editTaskText(taskId) {
+  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  const editingTask = tasks.find(task => task.id === taskId);
+  modalEditTask.style.display = 'flex';
+  //TODO: сделать отображение текущей задачи до редакта
+  const wtf = document.getElementById('textareaTasksModal');
+  wtf.innerText = 'ААААААа';
 }
